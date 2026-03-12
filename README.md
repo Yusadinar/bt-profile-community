@@ -1,6 +1,6 @@
-<img width="1430" height="725" alt="image" src="https://github.com/user-attachments/assets/4333a000-6cf0-41b3-bf1a-366611a28c7f" /># 🚀 Barisan Terdepan - Profile Website
+# 🚀 Barisan Terdepan - Profile Website
 
-Website profil interaktif dan arsip digital untuk sirkel pertemanan **Barisan Terdepan**. Proyek ini dibuat sebagai wadah dokumentasi memori tongkrongan, mulai dari galeri foto kumpul-kumpul hingga pelacak wacana agenda selanjutnya yang harus direalisasikan.
+Website profil interaktif dan arsip digital untuk sirkel pertemanan **Barisan Terdepan**. Proyek ini dibuat sebagai wadah dokumentasi memori tongkrongan, mulai dari galeri foto kumpul-kumpul hingga pelacak wacana agenda selanjutnya yang harus direalisasikan. <br>
 <img width="1430" height="725" alt="image" src="https://github.com/user-attachments/assets/a48e5801-f1a7-4d30-917c-daa90e40566b" />
 
 
