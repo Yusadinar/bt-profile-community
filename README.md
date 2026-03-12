@@ -34,3 +34,19 @@ Karena proyek ini hanya menggunakan HTML statis, menjalankannya sangatlah mudah:
 1. *Clone* repositori ini ke komputer lokal kamu:
    ```bash
    git clone [https://github.com/username-kamu/barisan-terdepan.git](https://github.com/username-kamu/barisan-terdepan.git)
+2. Buka folder proyek tersebut.
+3. Siapkan file musik dengan nama lagu.mp3 dan letakkan di folder yang sama dengan index.html (atau sesuaikan path audio di dalam kode HTML).
+4. Klik kanan pada file index.html dan buka menggunakan browser pilihanmu (Chrome, Firefox, Safari, dll).
+5. (Opsional) Sangat disarankan untuk membukanya menggunakan ekstensi Live Server di VS Code agar fitur Audio API berjalan sempurna tanpa pemblokiran keamanan lokal (CORS policy).
+
+## 📂 Struktur Direktori Disarankan
+Jika ingin mengelola aset gambar dan audio sendiri, disarankan membuat struktur folder seperti ini:
+📁 barisan-terdepan/
+├── 📄 index.html      # File utama website
+├── 📄 README.md       # Dokumentasi repositori
+├── 🎵 lagu.mp3        # File background music
+└── 📁 assets/         # (Opsional) Folder untuk menyimpan foto anggota dan galeri lokal
+
+## 📝 Lisensi
+Proyek ini dibuat untuk keperluan internal sirkel Barisan Terdepan. Silakan jadikan referensi jika bermanfaat!
+© 2026 BPH Barisan Terdepan
