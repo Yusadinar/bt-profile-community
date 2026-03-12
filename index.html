@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BARISAN TERDEPAN | Sirkel Pertemanan</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#3b82f6', // Bright Blue for dark mode
+                        'primary-hover': '#60a5fa',
+                        dark: {
+                            bg: '#020617', // slate-950
+                            surface: '#0f172a', // slate-900
+                            border: '#1e293b', // slate-800
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .fade-in-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-slate-300 bg-dark-bg selection:bg-primary selection:text-white">
+
+    <nav id="navbar" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-4xl transition-all duration-300 bg-dark-surface/60 backdrop-blur-lg border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] rounded-full px-6 py-4 flex justify-between items-center">
+        <div class="text-xl font-bold tracking-tight text-white cursor-pointer" onclick="window.scrollTo(0,0)">
+            BARISAN <span class="text-primary">TERDEPAN</span>
+        </div>
+        <ul class="hidden md:flex gap-8 font-medium text-sm text-slate-300">
+            <li><a href="#home" class="hover:text-white transition-colors">Beranda</a></li>
+            <li><a href="#members" class="hover:text-white transition-colors">Anggota</a></li>
+            <li><a href="#documentation" class="hover:text-white transition-colors">Dokumentasi</a></li>
+            <li><a href="#agenda" class="hover:text-white transition-colors">Agenda</a></li>
+            <li><a href="#about" class="hover:text-white transition-colors">Tentang Kami</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="h-screen flex items-center justify-center text-center bg-cover bg-center bg-no-repeat pt-16 relative
+            md:bg-[url('/assets/bg2.jpeg')]
+            bg-[url('/assets/bg-mb1.jpeg')]">
+        
+        <div class="absolute inset-0 bg-slate-950/70 z-0"></div>
+        <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-dark-bg to-transparent z-0"></div>
+        
+        <div class="container mx-auto px-6 relative z-10 fade-in-up is-visible">
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-white drop-shadow-lg">
+                BARISAN TERDEPAN
+            </h1>
+            <p class="text-lg md:text-xl text-slate-200 mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+                Bukan organisasi formal, cuma sirkel sembilan orang yang kebetulan nyambung, seru-seruan bareng, dan keterusan sampai sekarang.
+            </p>
+            <a href="#members" class="inline-block bg-primary hover:bg-primary-hover text-white font-semibold py-3 px-8 rounded-full shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] hover:-translate-y-0.5 transition-all duration-300">
+                Lihat Anggota
+            </a>
+        </div>
+    </header>
+
+    <section id="members" class="py-24 relative overflow-hidden">
+        <div class="container mx-auto px-6 lg:px-12 max-w-7xl">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Anggota Barisan Terdepan</h2>
+                <div class="h-1 w-20 bg-primary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="mb-16">
+                <h3 class="text-2xl font-semibold text-slate-300 mb-8 text-center fade-in-up flex items-center justify-center gap-3">
+                    <span class="w-12 h-[1px] bg-slate-600"></span>
+                    BEPEHA
+                    <span class="w-12 h-[1px] bg-slate-600"></span>
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="core-container">
+                    </div>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-semibold text-slate-300 mb-8 text-center fade-in-up flex items-center justify-center gap-3">
+                    <span class="w-12 h-[1px] bg-slate-600"></span>
+                    Anggota YTTA
+                    <span class="w-12 h-[1px] bg-slate-600"></span>
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="regular-container">
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="documentation" class="py-24 bg-dark-surface border-y border-dark-border">
+        <div class="container mx-auto px-6 lg:px-12 max-w-7xl">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Galeri & Kenangan</h2>
+                <div class="h-1 w-20 bg-primary mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <a href="https://drive.google.com/drive/folders/1RVcK7o_b9s6a31Y1fIgNFpr-hxxxklYI?usp=drive_link" target="_blank" class="fade-in-up group relative rounded-xl overflow-hidden aspect-[4/3] block border border-dark-border shadow-lg hover:shadow-primary/20 hover:border-primary/50 transition-all duration-300" style="transition-delay: 100ms;">
+                    <img src="assets/example.jpg" alt="Nongkrong 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-6">
+                        <span class="text-white font-semibold text-lg translate-y-2 group-hover:translate-y-0 transition-transform duration-300">CFN 2024 [19 Jan 24]</span>
+                    </div>
+                </a>
+                <a href="https://drive.google.com/drive/folders/1KY_u7DboUD3B87-SjuVGOERUCFIRtfTd?usp=drive_link" target="_blank" class="fade-in-up group relative rounded-xl overflow-hidden aspect-[4/3] block border border-dark-border shadow-lg hover:shadow-primary/20 hover:border-primary/50 transition-all duration-300" style="transition-delay: 200ms;">
+                    <img src="assets/potstud.JPG" alt="Nongkrong 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-6">
+                        <span class="text-white font-semibold text-lg translate-y-2 group-hover:translate-y-0 transition-transform duration-300">Photostudio Event [9 Jan 25]</span>
+                    </div>
+                </a>
+                <a href="https://drive.google.com/drive/folders/1a5x3bae0B-faZX3H5WZ6gm4AbK3VKM_C?usp=drive_link" target="_blank" class="fade-in-up group relative rounded-xl overflow-hidden aspect-[4/3] block border border-dark-border shadow-lg hover:shadow-primary/20 hover:border-primary/50 transition-all duration-300" style="transition-delay: 300ms;">
+                    <img src="assets/gacoan.jpg" alt="Nongkrong 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-6">
+                        <span class="text-white font-semibold text-lg translate-y-2 group-hover:translate-y-0 transition-transform duration-300">Gacoan Event [29 Jul 25]</span>
+                    </div>
+                </a>
+                <a href="https://drive.google.com/drive/folders/1W2KyH9_WJ47MR4J8oE8fIbkyLMU0M1sE?usp=drive_link" target="_blank" class="fade-in-up group relative rounded-xl overflow-hidden aspect-[4/3] block border border-dark-border shadow-lg hover:shadow-primary/20 hover:border-primary/50 transition-all duration-300" style="transition-delay: 300ms;">
+                    <img src="assets/lifeup.jpg" alt="Nongkrong 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-6">
+                        <span class="text-white font-semibold text-lg translate-y-2 group-hover:translate-y-0 transition-transform duration-300">Life Update [21 Jan 26]</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="agenda" class="py-24 relative overflow-hidden bg-dark-bg border-t border-dark-border">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary/10 rounded-[100%] blur-[100px] pointer-events-none"></div>
+        
+        <div class="container mx-auto px-6 lg:px-12 max-w-4xl relative z-10">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Agenda Selanjutnya</h2>
+                <div class="h-1 w-20 bg-primary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="fade-in-up bg-dark-surface rounded-3xl p-8 md:p-12 border border-dark-border shadow-2xl text-center relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
+                
+                <div class="relative z-10">
+                    <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-primary/10 text-primary border border-primary/20 mb-8">
+                        <span class="relative flex h-3 w-3">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+                        </span>
+                        <span class="text-sm font-bold tracking-widest uppercase">Segera Hadir</span>
+                    </div>
+                    
+                    <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Wacana Kumpul & Eksekusi</h3>
+                    
+                    <p class="text-lg text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                        Lagi dirundingin nih mau nongkrong atau jalan kemana lagi. BPH lagi nyari jadwal yang pas biar mayoritas bisa. Tungguin aja updatenya!
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto text-left">
+                        <div class="bg-dark-bg/80 p-6 rounded-2xl border border-white/5 flex items-center gap-5 transition-colors hover:border-primary/30">
+                            <div class="text-4xl drop-shadow-lg">📍</div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Lokasi Tujuan</h4>
+                                <a href="https://maps.app.goo.gl/g1CEzQsY8YeqFKQG8" class="text-slate-500 italic select-none transition-all duration-300">Nayra house's</a>
+                                <!-- blur-[4px]--> 
+                                 <!-- hover:blur-[0px] -->
+                            </div>
+                        </div>
+                        <div class="bg-dark-bg/80 p-6 rounded-2xl border border-white/5 flex items-center gap-5 transition-colors hover:border-primary/30">
+                            <div class="text-4xl drop-shadow-lg">📅</div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Tanggal Kejadian</h4>
+                                <p class="text-slate-500 italic select-none transition-all duration-300">15 Maret 2026</p>
+                                <!-- blur-[4px]--> 
+                                 <!-- hover:blur-[0px] -->
+                            </div>
+                        </div>
+                        <div class="bg-dark-bg/80 p-6 rounded-2xl border border-white/5 flex items-center gap-5 transition-colors hover:border-primary/30">
+                            <div class="text-4xl drop-shadow-lg">🎯</div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Aktivitas</h4>
+                                <a href="https://btvotingawards.gt.tc/" class="text-slate-500 italic select-none hover:blur-[0px] transition-all duration-300">Bukber / Voting Time</a>
+                                <p class=""></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24">
+        <div class="container mx-auto px-6 lg:px-12 max-w-4xl text-center">
+            <div class="fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">Tentang Sirkel Kami</h2>
+                <p class="text-lg text-slate-400 mb-12">
+                    Barisan Terdepan jelas bukan organisasi resmi atau BEM kampus. Kami cuma sekumpulan teman dari masa SMA yang entah kenapa bisa awet berteman sampai sekarang. Tempat sambat, tempat cerita hal random, dan pastinya tempat bersenang-senang bareng.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left mt-8">
+                <div class="fade-in-up bg-dark-surface p-8 rounded-2xl shadow-lg border border-dark-border hover:border-primary/30 transition-colors" style="transition-delay: 100ms;">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center text-primary">☕</span>
+                        Aktivitas Kami
+                    </h3>
+                    <p class="text-slate-400">Nggak ada jadwal rapat formal. Entah itu sekadar ketemu dikala libur semester, mabar game, atau ngomongin hal-hal nggak penting berjam-jam, yang penting asik dan pada ngumpul.</p>
+                </div>
+                <div class="fade-in-up bg-dark-surface p-8 rounded-2xl shadow-lg border border-dark-border hover:border-primary/30 transition-colors" style="transition-delay: 200ms;">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center text-primary">🤝</span>
+                        Regulasi
+                    </h3>
+                    <p class="text-slate-400">Nggak ada aturan baku di sirkel ini. Intinya saling support, jaga komunikasi, saling bantu kalau ada yang lagi susah, dan tetap hidup.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark-surface border-t border-dark-border text-slate-400 py-12 text-center fade-in-up">
+        <div class="container mx-auto px-6">
+            <h2 class="text-2xl font-bold text-white mb-2">BARISAN <span class="text-primary">TERDEPAN</span></h2>
+            <p class="mb-8 text-sm">&copy; 2026 Barisan Terdepan. All rights reserved.</p>
+            <div class="flex justify-center gap-6">
+                <a href="#" class="hover:text-primary transition-colors italic">When yaa fullteam :D</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="modal-backdrop" class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+        <div id="modal-content" class="relative bg-dark-surface border border-dark-border rounded-2xl shadow-2xl w-full max-w-md overflow-hidden transform scale-95 transition-transform duration-300">
+            <button id="close-modal" class="absolute top-4 right-4 bg-black/50 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center font-bold transition-colors z-10 border border-white/10">
+                &times;
+            </button>
+            <div class="w-full h-64 overflow-hidden relative">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-surface to-transparent z-0 bottom-0 h-1/2 mt-auto"></div>
+                <img src="" alt="Foto Anggota" id="modal-img" class="w-full h-full object-cover">
+            </div>
+            <div class="p-8 relative z-10 -mt-6">
+                <h3 id="modal-name" class="text-3xl font-bold text-white mb-1">Nama Anggota</h3>
+                <span id="modal-role" class="block text-primary font-semibold mb-4 text-sm tracking-wide uppercase">Role</span>
+                <p id="modal-bio" class="text-slate-400 leading-relaxed">Bio goes here.</p>
+            </div>
+        </div>
+    </div>
+
+    <audio id="bg-music" loop preload="auto">
+       <source src="lagu.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="music-toggle" class="fixed bottom-6 right-6 z-[100] bg-primary hover:bg-primary-hover text-white w-14 h-14 rounded-full shadow-[0_0_20px_rgba(59,130,246,0.5)] flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none group">
+        <svg id="icon-playing" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M9 19V5l-7 7H2v8h4l7 7z"></path>
+        </svg>
+        <svg id="icon-muted" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h2.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path>
+        </svg>
+    </button>
+
+    <script>
+        // --- 1. Navbar Scroll Shrink Effect ---
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2', 'bg-dark-surface/90');
+                navbar.classList.remove('py-4', 'bg-dark-surface/60');
+            } else {
+                navbar.classList.add('py-4', 'bg-dark-surface/60');
+                navbar.classList.remove('py-2', 'bg-dark-surface/90');
+            }
+        });
+
+        // --- 2. Scroll Animation Observer ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // --- 3. Data Anggota ---
+        const membersData = [
+            // Big 3
+            { id: 1, 
+                name: "Yusadiningrat", 
+                role: "Lead", 
+                bio: "Yang paling sering ngajakin kumpul dan jadi inisiator kalau wacana udah mulai mandek.", 
+                img: "/assets/yusa1.png",
+                posisi:"object-top" },
+            { id: 2, 
+                name: "Darrell", 
+                role: "Wingman", 
+                bio: "Partner sehati Lead yang bantuin mastiin semua anak-anak pada ikut ngumpul.", 
+                img: "/assets/drl.png", 
+                posisi:"object-top"},
+            { id: 3, 
+                name: "Nayra", 
+                role: "Secretary", 
+                bio: "Tukang catet hal-hal penting, ngingetin tanggalan, dan ngerapihin rencana sirkel.", 
+                img: "/assets/nay1.png", 
+                posisi:"object-top" },
+            // Members
+            { id: 4,
+                 name: "Hasna", 
+                 role: "Member", 
+                 bio: "Paling asik diajak cerita, dengerin curhat, dan selalu meramaikan suasana.", 
+                 img: "/assets/hsn2.png", 
+                 posisi:"object-top" },
+            { id: 5, 
+                name: "Zahra", 
+                role: "Member", 
+                bio: "Support system andalan yang celetukannya selalu bikin sirkel jadi hidup.", 
+                img: "assets/jara1.png", 
+                posisi:"object-top" },
+            { id: 6, 
+                name: "Arini", 
+                role: "Member", 
+                bio: "Kalau udah kumpul pasti seru, bawa energi positif dan nggak pernah kehabisan topik.", 
+                img: "assets/rin1.png",
+                posisi:"object-top" },
+            { id: 7, 
+                name: "Ahya", 
+                role: "Member", 
+                bio: "Temen ngobrol dari hal serius sampai hal paling random sekalipun.", 
+                img: "/assets/ahay1.png", 
+                posisi:"object-center" },
+            { id: 8, 
+                name: "Alif", 
+                role: "Member", 
+                bio: "Si solid yang bisa diandelin kapan aja. Gas terus kalau diajakin main.", 
+                img: "assets/alip2.png",
+                posisi:"object-top" },
+            { id: 9, 
+                name: "Rossi", 
+                role: "Member", 
+                bio: "Yang bikin kumpul makin rame dan selalu punya candaan khas buat ditongkrongan.", 
+                img: "assets/rossi2.png",
+                posisi:"object-top"}
+        ];
+
+        // --- 4. Render Anggota (Dibagi 2 Area) ---
+        const coreContainer = document.getElementById('core-container');
+        const regularContainer = document.getElementById('regular-container');
+        
+        // Fungsi pembantu untuk membuat kartu
+        function createMemberCard(member, index, container) {
+            const card = document.createElement('div');
+            card.className = 'fade-in-up bg-dark-surface rounded-2xl overflow-hidden shadow-lg border border-dark-border hover:border-primary/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] hover:-translate-y-2 transition-all duration-300 cursor-pointer group';
+            card.style.transitionDelay = `${(index % 3) * 150}ms`; // Efek stagger
+            
+            card.innerHTML = `
+                <div class="w-full h-64 overflow-hidden relative">
+                    <div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 mix-blend-overlay"></div>
+                    <img src="${member.img}" alt="${member.name}" class="w-full h-full object-cover ${member.posisi} group-hover:scale-110 transition-transform duration-700 opacity-90 group-hover:opacity-100">
+                </div>
+                <div class="p-6 text-center relative z-20 bg-dark-surface">
+                    <h3 class="text-xl font-bold text-white mb-1 group-hover:text-primary transition-colors">${member.name}</h3>
+                    <p class="text-sm font-medium ${member.role.includes('Lead') || member.role === 'Secretary' ? 'text-primary' : 'text-slate-400'}">${member.role}</p>
+                </div>
+            `;
+            
+            card.addEventListener('click', () => openModal(member));
+            container.appendChild(card);
+        }
+
+        // Render Big 3 (Index 0 sampai 2)
+        membersData.slice(0, 3).forEach((member, index) => {
+            createMemberCard(member, index, coreContainer);
+        });
+
+        // Render Sisa Member (Index 3 sampai selesai)
+        membersData.slice(3).forEach((member, index) => {
+            createMemberCard(member, index, regularContainer);
+        });
+
+        // Daftarkan ke observer animasi
+        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+        // --- 5. Modal Logic ---
+        const modal = document.getElementById('modal');
+        const modalContent = document.getElementById('modal-content');
+        const modalBackdrop = document.getElementById('modal-backdrop');
+        const closeModalBtn = document.getElementById('close-modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalName = document.getElementById('modal-name');
+        const modalRole = document.getElementById('modal-role');
+        const modalBio = document.getElementById('modal-bio');
+        
+        function openModal(member) {
+            modalImg.src = member.img;
+            modalName.textContent = member.name;
+            modalRole.textContent = member.role;
+            modalBio.textContent = member.bio;
+            
+             modalImg.className = `w-full h-full object-cover ${member.posisi}`;
+            
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+            
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            
+            document.body.style.overflow = 'auto';
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modalBackdrop.addEventListener('click', closeModal);
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('opacity-0')) {
+                closeModal();
+            }
+        });
+
+// --- 6. Fitur Background Music ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const bgMusic = document.getElementById('bg-music');
+            const musicToggle = document.getElementById('music-toggle');
+            const iconPlaying = document.getElementById('icon-playing');
+            const iconMuted = document.getElementById('icon-muted');
+            
+            if (bgMusic) {
+                bgMusic.volume = 0.3; 
+            }
+
+            if (!bgMusic || !musicToggle) return;
+
+            let isMusicPlaying = false;
+            let userHasInteracted = false;
+
+            function updateMusicUI() {
+                if (isMusicPlaying) {
+                    iconPlaying.classList.remove('hidden');
+                    iconMuted.classList.add('hidden');
+                    musicToggle.classList.add('animate-pulse');
+                } else {
+                    iconPlaying.classList.add('hidden');
+                    iconMuted.classList.remove('hidden');
+                    musicToggle.classList.remove('animate-pulse');
+                }
+            }
+
+            function toggleMusic() {
+                if (isMusicPlaying) {
+                    bgMusic.pause();
+                } else {
+                    bgMusic.play().catch(e => console.log("Menunggu file audio...", e));
+                }
+                isMusicPlaying = !isMusicPlaying;
+                updateMusicUI();
+            }
+
+            musicToggle.addEventListener('click', (e) => {
+                e.stopPropagation(); 
+                userHasInteracted = true; 
+                toggleMusic();
+            });
+
+            // Ganti deteksi scroll dengan klik (click) dan sentuhan layar (touchstart)
+            function unlockAudio() {
+                if (!userHasInteracted && !isMusicPlaying) {
+                    bgMusic.play().then(() => {
+                        isMusicPlaying = true;
+                        updateMusicUI();
+                        userHasInteracted = true;
+                    }).catch((error) => {
+                        console.log("Autoplay ditolak browser. Harus klik tombol manual.", error);
+                    });
+                }
+                
+                // Hapus pendeteksi setelah berhasil jalan
+                document.removeEventListener('click', unlockAudio);
+                document.removeEventListener('touchstart', unlockAudio);
+            }
+
+            // Pasang event ke klik dan tap layar HP
+            document.addEventListener('click', unlockAudio);
+            document.addEventListener('touchstart', unlockAudio);
+        });
+    </script>
+</body>
+</html>
