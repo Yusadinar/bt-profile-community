@@ -11,8 +11,8 @@ Website profil interaktif dan arsip digital untuk sirkel pertemanan **Barisan Te
 * 🎨 **Modern Dark UI:** Desain antarmuka minimalis nan elegan dengan tema *dark mode*, dilengkapi efek *glassmorphism* pada *floating navbar*.
 * 📱 **Fully Responsive:** Tampil mulus di perangkat *mobile* maupun desktop. Menggunakan teknik *Art Direction* pada gambar *Hero background* agar tidak terpotong saat orientasi layar berubah.
 * 🎵 **Interactive BGM Player:** Fitur pemutar lagu otomatis saat pengguna berinteraksi dengan halaman, lengkap dengan *floating button* kustom untuk Play/Pause.
-* 👥 **Dynamic Member Showcase:** Menampilkan profil 9 anggota sirkel yang terbagi menjadi **Trio Penggerak** (Lead, Co-Lead, Secretary) dan **Pasukan Solid**, lengkap dengan *modal popup* detail anggota.
-* 🗓️ **Agenda Tracker:** Seksi khusus *Coming Soon* dengan animasi elemen berdenyut dan efek *blur text* interaktif untuk menyembunyikan detail wacana lokasi dan aktivitas.
+* 👥 **Dynamic Member Showcase:** Menampilkan profil 9 anggota sirkel yang terbagi menjadi **BPH** (Lead, Wingman, Secretary) dan **Anggota**, lengkap dengan *modal popup* detail anggota.
+* 🗓️ **Agenda Tracker:** Seksi khusus *Coming Soon* dengan animasi elemen berdenyut.
 * ✨ **Smooth Scroll Animations:** Implementasi *Intersection Observer* API menggunakan Vanilla JavaScript untuk memberikan efek *fade-in-up* saat elemen memasuki layar.
 
 ---
