@@ -34,7 +34,7 @@ Karena proyek ini hanya menggunakan HTML statis, menjalankannya sangatlah mudah:
 
 1. *Clone* repositori ini ke komputer lokal kamu:
    ```bash
-   git clone [https://github.com/username-kamu/barisan-terdepan.git](https://github.com/username-kamu/barisan-terdepan.git)
+   git clone [https://github.com/username-kamu/bt-profile-community.git](https://github.com/username-kamu/bt-profile-community.git)
 2. Buka folder proyek tersebut.
 3. Siapkan file musik dengan nama lagu.mp3 dan letakkan di folder yang sama dengan index.html (atau sesuaikan path audio di dalam kode HTML).
 4. Klik kanan pada file index.html dan buka menggunakan browser pilihanmu (Chrome, Firefox, Safari, dll).
