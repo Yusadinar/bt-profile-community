@@ -1,6 +1,7 @@
 # 🚀 Barisan Terdepan - Profile Website
 
 Website profil interaktif dan arsip digital untuk sirkel pertemanan **Barisan Terdepan**. Proyek ini dibuat sebagai wadah dokumentasi memori tongkrongan, mulai dari galeri foto kumpul-kumpul hingga pelacak wacana agenda selanjutnya yang harus direalisasikan.
+<img width="1429" height="732" alt="image" src="https://github.com/user-attachments/assets/13a1c691-6111-4dee-b5b2-7a8c14bf24ef" />
 
 🌐 **Live Website:** [https://bt-profile.xo.je/](https://bt-profile.xo.je/)
 
