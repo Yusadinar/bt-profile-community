@@ -1,7 +1,8 @@
 # 🚀 Barisan Terdepan - Profile Website
 
 Website profil interaktif dan arsip digital untuk sirkel pertemanan **Barisan Terdepan**. Proyek ini dibuat sebagai wadah dokumentasi memori tongkrongan, mulai dari galeri foto kumpul-kumpul hingga pelacak wacana agenda selanjutnya yang harus direalisasikan.
-<img width="1429" height="732" alt="image" src="https://github.com/user-attachments/assets/13a1c691-6111-4dee-b5b2-7a8c14bf24ef" />
+<img width="1430" height="725" alt="image" src="https://github.com/user-attachments/assets/a48e5801-f1a7-4d30-917c-daa90e40566b" />
+
 
 🌐 **Live Website:** [https://bt-profile.xo.je/](https://bt-profile.xo.je/)
 
@@ -40,13 +41,17 @@ Karena proyek ini hanya menggunakan HTML statis, menjalankannya sangatlah mudah:
 4. Klik kanan pada file index.html dan buka menggunakan browser pilihanmu (Chrome, Firefox, Safari, dll).
 5. (Opsional) Sangat disarankan untuk membukanya menggunakan ekstensi Live Server di VS Code agar fitur Audio API berjalan sempurna tanpa pemblokiran keamanan lokal (CORS policy).
 
+---
+
 ## 📂 Struktur Direktori Disarankan
-Jika ingin mengelola aset gambar dan audio sendiri, disarankan membuat struktur folder seperti ini:
-📁 barisan-terdepan/
-├── 📄 index.html      # File utama website
-├── 📄 README.md       # Dokumentasi repositori
-├── 🎵 lagu.mp3        # File background music
-└── 📁 assets/         # (Opsional) Folder untuk menyimpan foto anggota dan galeri lokal
+Jika ingin mengelola aset gambar dan audio sendiri, disarankan membuat struktur folder seperti ini: <br>
+📁 barisan-terdepan/ <br> 
+  ├── 📄 index.html      # File utama website <br>
+  ├── 📄 README.md       # Dokumentasi repositori <br>
+  ├── 🎵 lagu.mp3        # File background music <br>
+  └── 📁 assets/         # (Opsional) Folder untuk menyimpan foto anggota dan galeri lokal <br>
+
+---
 
 ## 📝 Lisensi
 Proyek ini dibuat untuk keperluan internal sirkel Barisan Terdepan. Silakan jadikan referensi jika bermanfaat!
