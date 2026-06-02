@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BARISAN TERDEPAN | Sirkel Pertemanan</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#3b82f6', // Bright Blue for dark mode
+                        'primary-hover': '#60a5fa',
+                        dark: {
+                            bg: '#020617', // slate-950
+                            surface: '#0f172a', // slate-900
+                            border: '#1e293b', // slate-800
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .fade-in-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
+        }
+        
+        /* Sparkles Anim */
+        @keyframes sparkle-anim {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(75deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(var(--sparkle-scale, 1)) rotate(120deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(150deg);
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-slate-300 bg-dark-bg selection:bg-primary selection:text-white">
+
+    <nav id="navbar" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-4xl transition-all duration-300 bg-dark-surface/60 backdrop-blur-lg border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] rounded-full px-6 py-4 flex justify-between items-center">
+        <div class="text-xl font-bold tracking-tight text-white cursor-pointer" onclick="window.scrollTo(0,0)">
+            BARISAN <span class="text-primary">TERDEPAN</span>
+        </div>
+        <ul class="hidden md:flex gap-8 font-medium text-sm text-slate-300">
+            <li><a href="#home" class="hover:text-white transition-colors">Beranda</a></li>
+            <li><a href="#members" class="hover:text-white transition-colors">Anggota</a></li>
+            <li><a href="#documentation" class="hover:text-white transition-colors">Dokumentasi</a></li>
+            <li><a href="#agenda" class="hover:text-white transition-colors">Agenda</a></li>
+            <li><a href="#about" class="hover:text-white transition-colors">Tentang Kami</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="h-[300vh] py-40 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d] bg-dark-bg">
+        <div class="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0 z-20 pointer-events-none flex flex-col items-center text-center">
+            <div class="flex flex-col items-center justify-center gap-2 mb-6 fade-in-up is-visible">
+                <div id="sparkles-container" class="relative inline-block">
+                    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white drop-shadow-lg text-center relative z-10">
+                        BARISAN <br /> <span class="text-primary">TERDEPAN</span>
+                    </h1>
+                </div>
+            </div>
+            <div id="reveal-text-container" class="text-lg md:text-xl text-slate-200 mb-10 max-w-2xl leading-relaxed drop-shadow-md fade-in-up is-visible flex flex-wrap justify-center" style="transition-delay: 100ms;">
+            </div>
+            <a href="#members" class="pointer-events-auto inline-block bg-primary hover:bg-primary-hover text-white font-semibold py-3 px-8 rounded-full shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] hover:-translate-y-0.5 transition-all duration-300 fade-in-up is-visible" style="transition-delay: 200ms;">
+                Lihat Anggota
+            </a>
+        </div>
+
+        <div id="parallax-motion" class="" style="transform: rotateX(15deg) rotateZ(20deg) translateY(-700px); opacity: 0.2; transform-style: preserve-3d; will-change: transform, opacity;">
+            <div class="flex flex-row-reverse space-x-reverse space-x-10 md:space-x-20 mb-10 md:mb-20 w-max ml-[-100vw] md:ml-[-150vw]" id="parallax-row-1" style="will-change: transform;">
+            </div>
+            <div class="flex flex-row space-x-10 md:space-x-20 mb-10 md:mb-20 w-max ml-[-100vw] md:ml-[-150vw]" id="parallax-row-2" style="will-change: transform;">
+            </div>
+            <div class="flex flex-row-reverse space-x-reverse space-x-10 md:space-x-20 w-max ml-[-100vw] md:ml-[-150vw]" id="parallax-row-3" style="will-change: transform;">
+            </div>
+        </div>
+        
+        <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-dark-bg to-transparent z-20 pointer-events-none"></div>
+    </section>
+
+    <section id="members" class="py-24 relative overflow-hidden">
+        <div class="container mx-auto px-6 lg:px-12 max-w-7xl">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Anggota Barisan Terdepan</h2>
+                <div class="h-1 w-20 bg-primary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="mb-16">
+                <h3 class="text-2xl font-semibold text-slate-300 mb-8 text-center fade-in-up flex items-center justify-center gap-3">
+                    <span class="w-12 h-[1px] bg-slate-600"></span>
+                    BEPEHA
+                    <span class="w-12 h-[1px] bg-slate-600"></span>
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="core-container">
+                    </div>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-semibold text-slate-300 mb-8 text-center fade-in-up flex items-center justify-center gap-3">
+                    <span class="w-12 h-[1px] bg-slate-600"></span>
+                    Anggota YTTA
+                    <span class="w-12 h-[1px] bg-slate-600"></span>
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="regular-container">
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="documentation" class="py-24 bg-dark-surface border-y border-dark-border">
+        <div class="container mx-auto px-6 lg:px-12 max-w-7xl">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Galeri & Kenangan</h2>
+                <div class="h-1 w-20 bg-primary mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <a href="https://drive.google.com/drive/folders/1RVcK7o_b9s6a31Y1fIgNFpr-hxxxklYI?usp=drive_link" target="_blank" class="fade-in-up group relative rounded-xl overflow-hidden aspect-[4/3] block border border-dark-border shadow-lg hover:shadow-primary/20 hover:border-primary/50 transition-all duration-300" style="transition-delay: 100ms;">
+                    <img src="assets/example.jpg" alt="Nongkrong 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-6">
+                        <span class="text-white font-semibold text-lg translate-y-2 group-hover:translate-y-0 transition-transform duration-300">CFN 2024 [19 Jan 24]</span>
+                    </div>
+                </a>
+                <a href="https://drive.google.com/drive/folders/1KY_u7DboUD3B87-SjuVGOERUCFIRtfTd?usp=drive_link" target="_blank" class="fade-in-up group relative rounded-xl overflow-hidden aspect-[4/3] block border border-dark-border shadow-lg hover:shadow-primary/20 hover:border-primary/50 transition-all duration-300" style="transition-delay: 200ms;">
+                    <img src="assets/potstud.JPG" alt="Nongkrong 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-6">
+                        <span class="text-white font-semibold text-lg translate-y-2 group-hover:translate-y-0 transition-transform duration-300">Photostudio Event [9 Jan 25]</span>
+                    </div>
+                </a>
+                <a href="https://drive.google.com/drive/folders/1a5x3bae0B-faZX3H5WZ6gm4AbK3VKM_C?usp=drive_link" target="_blank" class="fade-in-up group relative rounded-xl overflow-hidden aspect-[4/3] block border border-dark-border shadow-lg hover:shadow-primary/20 hover:border-primary/50 transition-all duration-300" style="transition-delay: 300ms;">
+                    <img src="assets/gacoan.jpg" alt="Nongkrong 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-6">
+                        <span class="text-white font-semibold text-lg translate-y-2 group-hover:translate-y-0 transition-transform duration-300">Gacoan Event [29 Jul 25]</span>
+                    </div>
+                </a>
+                <a href="https://drive.google.com/drive/folders/1W2KyH9_WJ47MR4J8oE8fIbkyLMU0M1sE?usp=drive_link" target="_blank" class="fade-in-up group relative rounded-xl overflow-hidden aspect-[4/3] block border border-dark-border shadow-lg hover:shadow-primary/20 hover:border-primary/50 transition-all duration-300" style="transition-delay: 300ms;">
+                    <img src="assets/lifeup.jpg" alt="Nongkrong 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-6">
+                        <span class="text-white font-semibold text-lg translate-y-2 group-hover:translate-y-0 transition-transform duration-300">Life Update [21 Jan 26]</span>
+                    </div>
+                </a>
+                <a href="https://drive.google.com/drive/folders/1KLC1KUB0NNk9iKrdd0xbJKy5kB8s51ZK?usp=drive_link" target="_blank" class="fade-in-up group relative rounded-xl overflow-hidden aspect-[4/3] block border border-dark-border shadow-lg hover:shadow-primary/20 hover:border-primary/50 transition-all duration-300" style="transition-delay: 300ms;">
+                    <img src="assets/bukber.jpeg" alt="Nongkrong 4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-6">
+                        <span class="text-white font-semibold text-lg translate-y-2 group-hover:translate-y-0 transition-transform duration-300">Bukber & Voting Awards [16 Mar 26]</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="agenda" class="py-24 relative overflow-hidden bg-dark-bg border-t border-dark-border">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary/10 rounded-[100%] blur-[100px] pointer-events-none"></div>
+        
+        <div class="container mx-auto px-6 lg:px-12 max-w-4xl relative z-10">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Agenda Selanjutnya</h2>
+                <div class="h-1 w-20 bg-primary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="fade-in-up bg-dark-surface rounded-3xl p-8 md:p-12 border border-dark-border shadow-2xl text-center relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
+                
+                <div class="relative z-10">
+                    <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-primary/10 text-primary border border-primary/20 mb-8">
+                        <span class="relative flex h-3 w-3">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+                        </span>
+                        <span class="text-sm font-bold tracking-widest uppercase">Segera Hadir</span>
+                    </div>
+                    
+                    <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Wacana Kumpul & Eksekusi</h3>
+                    
+                    <p class="text-lg text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                        Lagi dirundingin nih mau nongkrong atau jalan kemana lagi. BPH lagi nyari jadwal yang pas biar mayoritas bisa. Tungguin aja updatenya!
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto text-left">
+                        <div class="bg-dark-bg/80 p-6 rounded-2xl border border-white/5 flex items-center gap-5 transition-colors hover:border-primary/30">
+                            <div class="p-3 bg-primary/10 rounded-xl text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Lokasi Tujuan</h4>
+                                <a href="" class="text-slate-500 italic select-none transition-all duration-300 blur-[4px] hover:blur-[2px] ">???</a>
+                                <!-- blur-[4px]--> 
+                                 <!-- hover:blur-[0px] -->
+                            </div>
+                        </div>
+                        <div class="bg-dark-bg/80 p-6 rounded-2xl border border-white/5 flex items-center gap-5 transition-colors hover:border-primary/30">
+                            <div class="p-3 bg-primary/10 rounded-xl text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Tanggal Kejadian</h4>
+                                <p class="text-slate-500 italic select-none transition-all duration-300 blur-[4px] hover:blur-[2px]">???</p>
+                                <!-- blur-[4px]--> 
+                                 <!-- hover:blur-[0px] -->
+                            </div>
+                        </div>
+                        <div class="bg-dark-bg/80 p-6 rounded-2xl border border-white/5 flex items-center gap-5 transition-colors hover:border-primary/30">
+                            <div class="p-3 bg-primary/10 rounded-xl text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.45 15.08 15.08 0 01-.06-.312m-2.24 2.39a4.49 4.49 0 00-1.757 4.306 4.438 4.438 0 002.946-2.946 4.49 4.49 0 004.306-1.758q.18-.336.31-.692a15.28 15.28 0 00-3.119-3.119q-.355.13-.692.31zM7.114 11.389A15.09 15.09 0 015.65 14.4l-1.423-.474a2.5 2.5 0 01-1.603-2.617l.386-2.316a2.5 2.5 0 012.193-2.079l2.253-.28c.45-.055.91-.077 1.371-.065M12.611 16.886A15.09 15.09 0 0015.6 18.35l-.474 1.423a2.5 2.5 0 01-2.617 1.603l-2.316-.386a2.5 2.5 0 01-2.079-2.193l-.28-2.253c-.055-.45-.077-.91-.065-1.371" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Aktivitas</h4>
+                                <a href="" class="text-slate-500 italic select-none hover:blur-[0px] transition-all duration-300 blur-[4px] hover:blur-[2px]">???</a>
+                                <p class=""></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24">
+        <div class="container mx-auto px-6 lg:px-12 max-w-4xl text-center">
+            <div class="fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">Tentang Sirkel Kami</h2>
+                <p class="text-lg text-slate-400 mb-12">
+                    Barisan Terdepan jelas bukan organisasi resmi atau BEM kampus. Kami cuma sekumpulan teman dari masa SMA yang entah kenapa bisa awet berteman sampai sekarang. Tempat sambat, tempat cerita hal random, dan pastinya tempat bersenang-senang bareng.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left mt-8">
+                <div class="fade-in-up bg-dark-surface p-8 rounded-2xl shadow-lg border border-dark-border hover:border-primary/30 transition-colors" style="transition-delay: 100ms;">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center text-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+                            </svg>
+                        </span>
+                        Aktivitas Kami
+                    </h3>
+                    <p class="text-slate-400">Nggak ada jadwal rapat formal. Entah itu sekadar ketemu dikala libur semester, mabar game, atau ngomongin hal-hal nggak penting berjam-jam, yang penting asik dan pada ngumpul.</p>
+                </div>
+                <div class="fade-in-up bg-dark-surface p-8 rounded-2xl shadow-lg border border-dark-border hover:border-primary/30 transition-colors" style="transition-delay: 200ms;">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center text-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                            </svg>
+                        </span>
+                        Regulasi
+                    </h3>
+                    <p class="text-slate-400">Nggak ada aturan baku di sirkel ini. Intinya saling support, jaga komunikasi, saling bantu kalau ada yang lagi susah, dan tetap hidup.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark-surface border-t border-dark-border text-slate-400 py-12 text-center fade-in-up">
+        <div class="container mx-auto px-6">
+            <h2 class="text-2xl font-bold text-white mb-2">BARISAN <span class="text-primary">TERDEPAN</span></h2>
+            <p class="mb-8 text-sm">&copy; 2026 Barisan Terdepan. All rights reserved.</p>
+            <div class="flex justify-center gap-6">
+                <a href="#" class="hover:text-primary transition-colors italic">When yaa fullteam :D</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="modal-backdrop" class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+        <div id="modal-content" class="relative bg-dark-surface border border-dark-border rounded-2xl shadow-2xl w-full max-w-md overflow-hidden transform scale-95 transition-transform duration-300">
+            <button id="close-modal" class="absolute top-4 right-4 bg-black/50 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center font-bold transition-colors z-10 border border-white/10">
+                &times;
+            </button>
+            <div class="w-full h-64 overflow-hidden relative">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-surface to-transparent z-0 bottom-0 h-1/2 mt-auto"></div>
+                <img src="" alt="Foto Anggota" id="modal-img" class="w-full h-full object-cover">
+            </div>
+            <div class="p-8 relative z-10 -mt-6">
+                <h3 id="modal-name" class="text-3xl font-bold text-white mb-1">Nama Anggota</h3>
+                <span id="modal-role" class="block text-primary font-semibold mb-4 text-sm tracking-wide uppercase">Role</span>
+                <p id="modal-bio" class="text-slate-400 leading-relaxed">Bio goes here.</p>
+            </div>
+        </div>
+    </div>
+
+    <audio id="bg-music" loop preload="auto">
+       <source src="lagu.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="music-toggle" class="fixed bottom-6 right-6 z-[100] bg-primary hover:bg-primary-hover text-white w-14 h-14 rounded-full shadow-[0_0_20px_rgba(59,130,246,0.5)] flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none group">
+        <svg id="icon-playing" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M9 19V5l-7 7H2v8h4l7 7z"></path>
+        </svg>
+        <svg id="icon-muted" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h2.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path>
+        </svg>
+    </button>
+
+    <script>
+        // --- 0. Hero Parallax Data ---
+        const baseProducts = [
+            { title: 'Kenangan 1', thumbnail: 'assets/bg-mb1.jpeg' },
+            { title: 'Kenangan 2', thumbnail: 'assets/bg-mb2.jpeg' },
+            { title: 'CFN 2024 Event', thumbnail: 'assets/example.jpg' },
+            { title: 'Kenangan 4', thumbnail: 'assets/bg2.jpeg' },
+            { title: 'Bukber Event', thumbnail: 'assets/bukber.jpeg' },
+            { title: 'Gacoan Event', thumbnail: 'assets/gacoan.jpg' },
+            { title: 'Life Update', thumbnail: 'assets/lifeup.jpg' },
+            { title: 'Photostudio', thumbnail: 'assets/potstud.JPG' }
+        ];
+
+        const parallaxProducts = [];
+        for (let i = 0; i < 45; i++) {
+            parallaxProducts.push(baseProducts[i % baseProducts.length]);
+        }
+
+        function createProductCard(product) {
+            return `
+                <div class="group/product h-64 md:h-96 w-[20rem] md:w-[30rem] relative flex-shrink-0 transition-all duration-300 hover:scale-[1.03] hover:z-10 cursor-pointer rounded-xl overflow-hidden shadow-2xl border border-white/10">
+                    <a href="#members" class="block group-hover/product:shadow-2xl w-full h-full">
+                        <img src="${product.thumbnail}" loading="lazy" class="object-cover object-center absolute h-full w-full inset-0" alt="${product.title}" />
+                    </a>
+                </div>
+            `;
+        }
+
+        const row1 = document.getElementById('parallax-row-1');
+        const row2 = document.getElementById('parallax-row-2');
+        const row3 = document.getElementById('parallax-row-3');
+
+        if (row1 && row2 && row3) {
+            parallaxProducts.slice(0, 15).forEach(p => row1.innerHTML += createProductCard(p));
+            parallaxProducts.slice(15, 30).forEach(p => row2.innerHTML += createProductCard(p));
+            parallaxProducts.slice(30, 45).forEach(p => row3.innerHTML += createProductCard(p));
+        }
+
+        // Hero Parallax Animation Logic
+        const heroSection = document.getElementById('home');
+        const motionDiv = document.getElementById('parallax-motion');
+        
+        // --- Text Reveal Logic ---
+        const revealContainer = document.getElementById('reveal-text-container');
+        const revealTextString = "Bukan organisasi formal, cuma sirkel sembilan orang yang kebetulan nyambung, seru-seruan bareng, dan keterusan sampai sekarang.";
+        if (revealContainer) {
+            revealContainer.innerHTML = '';
+            revealTextString.split(' ').forEach(word => {
+                const wrapper = document.createElement('span');
+                wrapper.className = 'relative mx-1 lg:mx-1.5';
+                wrapper.innerHTML = `<span class="absolute opacity-30 text-white">${word}</span><span class="opacity-0 text-white reveal-word transition-opacity duration-75">${word}</span>`;
+                revealContainer.appendChild(wrapper);
+            });
+        }
+
+        let targetProgress = 0;
+        let currentProgress = 0;
+
+        function updateParallax() {
+            if (!heroSection || !motionDiv) return;
+            
+            const start = heroSection.offsetTop;
+            const end = start + heroSection.offsetHeight;
+            const scrollY = window.scrollY;
+            
+            // Map scroll to 0 - 1
+            let progress = (scrollY - start) / (end - start);
+            progress = Math.max(0, Math.min(1, progress));
+            targetProgress = progress;
+        }
+
+        function animateParallax() {
+            currentProgress += (targetProgress - currentProgress) * 0.1;
+
+            if (motionDiv && row1 && row2 && row3) {
+                const isMobile = window.innerWidth < 768;
+
+                // For top section transformations, use the 0 to 0.2 mapping roughly
+                let p20 = Math.min(currentProgress / 0.2, 1);
+                
+                const rotateX = 15 - (15 * p20);
+                const rotateZ = 20 - (20 * p20);
+                
+                const startY = isMobile ? -300 : -700;
+                const distanceY = isMobile ? 600 : 1200; // -300 to 300 (mobile) or -700 to 500 (desktop)
+                const translateY = startY + (distanceY * p20); 
+                
+                const opacity = 0.2 + (0.8 * p20);
+
+                motionDiv.style.transform = `rotateX(${rotateX}deg) rotateZ(${rotateZ}deg) translateY(${translateY}px)`;
+                motionDiv.style.opacity = opacity;
+
+                // Text Reveal opacity update
+                if (revealContainer) {
+                    const revealWords = revealContainer.querySelectorAll('.reveal-word');
+                    const totalWords = revealWords.length;
+                    
+                    revealWords.forEach((el, index) => {
+                        const start = index / totalWords;
+                        const end = start + (1 / totalWords);
+                        let wordOpacity = (p20 - start) / (end - start);
+                        wordOpacity = Math.max(0, Math.min(1, wordOpacity));
+                        el.style.opacity = wordOpacity;
+                    });
+                }
+
+                // For translations, use full 0 to 1 mapping
+                const distanceX = isMobile ? 600 : 1000;
+                const translateX = distanceX * currentProgress;
+                const translateXReverse = -distanceX * currentProgress;
+
+                row1.style.transform = `translateX(${translateX}px)`;
+                row2.style.transform = `translateX(${translateXReverse}px)`;
+                row3.style.transform = `translateX(${translateX}px)`;
+            }
+
+            requestAnimationFrame(animateParallax);
+        }
+
+        window.addEventListener('scroll', updateParallax);
+        window.addEventListener('resize', updateParallax);
+        updateParallax();
+        animateParallax();
+
+        // --- 1. Navbar Scroll Shrink Effect ---
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2', 'bg-dark-surface/90');
+                navbar.classList.remove('py-4', 'bg-dark-surface/60');
+            } else {
+                navbar.classList.add('py-4', 'bg-dark-surface/60');
+                navbar.classList.remove('py-2', 'bg-dark-surface/90');
+            }
+        });
+
+        // --- 2. Scroll Animation Observer ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // --- 3. Data Anggota ---
+        const membersData = [
+            // Big 3
+            { id: 1, 
+                name: "Yusadiningrat", 
+                role: "Lead", 
+                bio: "Yang paling sering ngajakin kumpul dan jadi inisiator kalau wacana udah mulai mandek.", 
+                img: "/assets/yusa1.png",
+                posisi:"object-top" },
+            { id: 2, 
+                name: "Darrell", 
+                role: "Wingman", 
+                bio: "Partner sehati Lead yang bantuin mastiin semua anak-anak pada ikut ngumpul.", 
+                img: "/assets/drl.png", 
+                posisi:"object-top"},
+            { id: 3, 
+                name: "Nayra", 
+                role: "Secretary", 
+                bio: "Tukang catet hal-hal penting, ngingetin tanggalan, dan ngerapihin rencana sirkel.", 
+                img: "/assets/nay1.png", 
+                posisi:"object-top" },
+            // Members
+            { id: 4,
+                 name: "Hasna", 
+                 role: "Member", 
+                 bio: "Paling asik diajak cerita, dengerin curhat, dan selalu meramaikan suasana.", 
+                 img: "/assets/hsn2.png", 
+                 posisi:"object-top" },
+            { id: 5, 
+                name: "Zahra", 
+                role: "Member", 
+                bio: "Support system andalan yang celetukannya selalu bikin sirkel jadi hidup.", 
+                img: "assets/jara1.png", 
+                posisi:"object-top" },
+            { id: 6, 
+                name: "Arini", 
+                role: "Member", 
+                bio: "Kalau udah kumpul pasti seru, bawa energi positif dan nggak pernah kehabisan topik.", 
+                img: "assets/rin1.png",
+                posisi:"object-top" },
+            { id: 7, 
+                name: "Ahya", 
+                role: "Member", 
+                bio: "Temen ngobrol dari hal serius sampai hal paling random sekalipun.", 
+                img: "/assets/ahay1.png", 
+                posisi:"object-center" },
+            { id: 8, 
+                name: "Alif", 
+                role: "Member", 
+                bio: "Si solid yang bisa diandelin kapan aja. Gas terus kalau diajakin main.", 
+                img: "assets/alip2.png",
+                posisi:"object-top" },
+            { id: 9, 
+                name: "Rossi", 
+                role: "Member", 
+                bio: "Yang bikin kumpul makin rame dan selalu punya candaan khas buat ditongkrongan.", 
+                img: "assets/rossi2.png",
+                posisi:"object-top"}
+        ];
+
+        // --- 4. Render Anggota (Dibagi 2 Area) ---
+        const coreContainer = document.getElementById('core-container');
+        const regularContainer = document.getElementById('regular-container');
+        
+        // Fungsi pembantu untuk membuat kartu
+        function createMemberCard(member, index, container) {
+            const card = document.createElement('div');
+            card.className = 'fade-in-up bg-dark-surface rounded-2xl overflow-hidden shadow-lg border border-dark-border hover:border-primary/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] hover:-translate-y-2 transition-all duration-300 cursor-pointer group';
+            card.style.transitionDelay = `${(index % 3) * 150}ms`; // Efek stagger
+            
+            card.innerHTML = `
+                <div class="w-full h-64 overflow-hidden relative">
+                    <div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 mix-blend-overlay"></div>
+                    <img src="${member.img}" alt="${member.name}" class="w-full h-full object-cover ${member.posisi} group-hover:scale-110 transition-transform duration-700 opacity-90 group-hover:opacity-100">
+                </div>
+                <div class="p-6 text-center relative z-20 bg-dark-surface">
+                    <h3 class="text-xl font-bold text-white mb-1 group-hover:text-primary transition-colors">${member.name}</h3>
+                    <p class="text-sm font-medium ${member.role.includes('Lead') || member.role === 'Secretary' ? 'text-primary' : 'text-slate-400'}">${member.role}</p>
+                </div>
+            `;
+            
+            card.addEventListener('click', () => openModal(member));
+            container.appendChild(card);
+        }
+
+        // Render Big 3 (Index 0 sampai 2)
+        membersData.slice(0, 3).forEach((member, index) => {
+            createMemberCard(member, index, coreContainer);
+        });
+
+        // Render Sisa Member (Index 3 sampai selesai)
+        membersData.slice(3).forEach((member, index) => {
+            createMemberCard(member, index, regularContainer);
+        });
+
+        // Daftarkan ke observer animasi
+        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+        // --- 5. Modal Logic ---
+        const modal = document.getElementById('modal');
+        const modalContent = document.getElementById('modal-content');
+        const modalBackdrop = document.getElementById('modal-backdrop');
+        const closeModalBtn = document.getElementById('close-modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalName = document.getElementById('modal-name');
+        const modalRole = document.getElementById('modal-role');
+        const modalBio = document.getElementById('modal-bio');
+        
+        function openModal(member) {
+            modalImg.src = member.img;
+            modalName.textContent = member.name;
+            modalRole.textContent = member.role;
+            modalBio.textContent = member.bio;
+            
+             modalImg.className = `w-full h-full object-cover ${member.posisi}`;
+            
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+            
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            
+            document.body.style.overflow = 'auto';
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modalBackdrop.addEventListener('click', closeModal);
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('opacity-0')) {
+                closeModal();
+            }
+        });
+
+// --- 6. Fitur Background Music ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const bgMusic = document.getElementById('bg-music');
+            const musicToggle = document.getElementById('music-toggle');
+            const iconPlaying = document.getElementById('icon-playing');
+            const iconMuted = document.getElementById('icon-muted');
+            
+            if (bgMusic) {
+                bgMusic.volume = 0.3; 
+            }
+
+            if (!bgMusic || !musicToggle) return;
+
+            let isMusicPlaying = false;
+            let userHasInteracted = false;
+
+            function updateMusicUI() {
+                if (isMusicPlaying) {
+                    iconPlaying.classList.remove('hidden');
+                    iconMuted.classList.add('hidden');
+                    musicToggle.classList.add('animate-pulse');
+                } else {
+                    iconPlaying.classList.add('hidden');
+                    iconMuted.classList.remove('hidden');
+                    musicToggle.classList.remove('animate-pulse');
+                }
+            }
+
+            function toggleMusic() {
+                if (isMusicPlaying) {
+                    bgMusic.pause();
+                } else {
+                    bgMusic.play().catch(e => console.log("Menunggu file audio...", e));
+                }
+                isMusicPlaying = !isMusicPlaying;
+                updateMusicUI();
+            }
+
+            musicToggle.addEventListener('click', (e) => {
+                e.stopPropagation(); 
+                userHasInteracted = true; 
+                toggleMusic();
+            });
+
+            // Ganti deteksi scroll dengan klik (click) dan sentuhan layar (touchstart)
+            function unlockAudio() {
+                if (!userHasInteracted && !isMusicPlaying) {
+                    bgMusic.play().then(() => {
+                        isMusicPlaying = true;
+                        updateMusicUI();
+                        userHasInteracted = true;
+                    }).catch((error) => {
+                        console.log("Autoplay ditolak browser. Harus klik tombol manual.", error);
+                    });
+                }
+                
+                // Hapus pendeteksi setelah berhasil jalan
+                document.removeEventListener('click', unlockAudio);
+                document.removeEventListener('touchstart', unlockAudio);
+            }
+
+            // Pasang event ke klik dan tap layar HP
+            document.addEventListener('click', unlockAudio);
+            document.addEventListener('touchstart', unlockAudio);
+        });
+
+        // --- Sparkles Effect Logic ---
+        const sparklesContainer = document.getElementById('sparkles-container');
+        const colors = ["#9E7AFF", "#FE8BBB"];
+        const sparklesCount = 10;
+        
+        function createSparkle() {
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("width", "21");
+            svg.setAttribute("height", "21");
+            svg.setAttribute("viewBox", "0 0 21 21");
+            svg.setAttribute("class", "pointer-events-none absolute z-20");
+            
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute("d", "M9.82531 0.843845C10.0553 0.215178 10.9446 0.215178 11.1746 0.843845L11.8618 2.72026C12.4006 4.19229 12.3916 6.39157 13.5 7.5C14.6084 8.60843 16.8077 8.59935 18.2797 9.13822L20.1561 9.82534C20.7858 10.0553 20.7858 10.9447 20.1561 11.1747L18.2797 11.8618C16.8077 12.4007 14.6084 12.3916 13.5 13.5C12.3916 14.6084 12.4006 16.8077 11.8618 18.2798L11.1746 20.1562C10.9446 20.7858 10.0553 20.7858 9.82531 20.1562L9.13819 18.2798C8.59932 16.8077 8.60843 14.6084 7.5 13.5C6.39157 12.3916 4.19225 12.4007 2.72023 11.8618L0.843814 11.1747C0.215148 10.9447 0.215148 10.0553 0.843814 9.82534L2.72023 9.13822C4.19225 8.59935 6.39157 8.60843 7.5 7.5C8.60843 6.39157 8.59932 4.19229 9.13819 2.72026L9.82531 0.843845Z");
+            
+            svg.appendChild(path);
+            resetSparkle(svg, path);
+            return svg;
+        }
+
+        function resetSparkle(svg, path) {
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            
+            // "BARISAN" (Top, White text) -> Blue sparkle
+            // "TERDEPAN" (Bottom, Blue text) -> White sparkle
+            const color = y < 50 ? "#3b82f6" : "#ffffff";
+            
+            const delay = Math.random() * 2;
+            const scale = Math.random() * 1 + 0.3;
+            
+            svg.style.left = `${x}%`;
+            svg.style.top = `${y}%`;
+            svg.style.animationDelay = `${delay}s`;
+            svg.style.setProperty('--sparkle-scale', scale);
+            path.setAttribute("fill", color);
+            
+            const lifespan = (Math.random() * 10 + 5) * 1000;
+            setTimeout(() => {
+                svg.style.animation = 'none';
+                svg.offsetHeight; 
+                resetSparkle(svg, path);
+                svg.style.animation = 'sparkle-anim 0.8s ease-in-out infinite';
+            }, lifespan);
+        }
+
+        if (sparklesContainer) {
+            for(let i=0; i<sparklesCount; i++) {
+                const sp = createSparkle();
+                sp.style.animation = 'sparkle-anim 0.8s ease-in-out infinite';
+                sparklesContainer.appendChild(sp);
+            }
+        }
+    </script>
+</body>
+</html>
