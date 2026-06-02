@@ -360,7 +360,7 @@
             return `
                 <div class="group/product h-64 md:h-96 w-[20rem] md:w-[30rem] relative flex-shrink-0 transition-all duration-300 hover:scale-[1.03] hover:z-10 cursor-pointer rounded-xl overflow-hidden shadow-2xl border border-white/10">
                     <a href="#members" class="block group-hover/product:shadow-2xl w-full h-full">
-                        <img src="${product.thumbnail}" loading="lazy" class="object-cover object-center absolute h-full w-full inset-0" alt="${product.title}" />
+                        <img src="${product.thumbnail}" decoding="async" class="object-cover object-center absolute h-full w-full inset-0" alt="${product.title}" />
                     </a>
                 </div>
             `;
@@ -395,26 +395,37 @@
 
         let targetProgress = 0;
         let currentProgress = 0;
+        let heroStart = 0;
+        let heroEnd = 0;
+        let isMobile = window.innerWidth < 768;
+
+        function updateLayout() {
+            if (!heroSection) return;
+            heroStart = heroSection.offsetTop;
+            heroEnd = heroStart + heroSection.offsetHeight;
+            isMobile = window.innerWidth < 768;
+            updateParallax();
+        }
 
         function updateParallax() {
             if (!heroSection || !motionDiv) return;
             
-            const start = heroSection.offsetTop;
-            const end = start + heroSection.offsetHeight;
             const scrollY = window.scrollY;
             
             // Map scroll to 0 - 1
-            let progress = (scrollY - start) / (end - start);
+            let progress = (scrollY - heroStart) / (heroEnd - heroStart || 1);
             progress = Math.max(0, Math.min(1, progress));
             targetProgress = progress;
         }
 
+        let lastProgress = -1;
+
         function animateParallax() {
-            currentProgress += (targetProgress - currentProgress) * 0.1;
+            currentProgress += (targetProgress - currentProgress) * 0.08;
 
-            if (motionDiv && row1 && row2 && row3) {
-                const isMobile = window.innerWidth < 768;
-
+            if (motionDiv && row1 && row2 && row3 && Math.abs(currentProgress - lastProgress) > 0.0001) {
+                lastProgress = currentProgress;
+                
                 // For top section transformations, use the 0 to 0.2 mapping roughly
                 let p20 = Math.min(currentProgress / 0.2, 1);
                 
@@ -422,12 +433,12 @@
                 const rotateZ = 20 - (20 * p20);
                 
                 const startY = isMobile ? -300 : -700;
-                const distanceY = isMobile ? 600 : 1200; // -300 to 300 (mobile) or -700 to 500 (desktop)
+                const distanceY = isMobile ? 600 : 1200; 
                 const translateY = startY + (distanceY * p20); 
                 
                 const opacity = 0.2 + (0.8 * p20);
 
-                motionDiv.style.transform = `rotateX(${rotateX}deg) rotateZ(${rotateZ}deg) translateY(${translateY}px)`;
+                motionDiv.style.transform = `rotateX(${rotateX}deg) rotateZ(${rotateZ}deg) translate3d(0, ${translateY}px, 0)`;
                 motionDiv.style.opacity = opacity;
 
                 // Text Reveal opacity update
@@ -449,17 +460,19 @@
                 const translateX = distanceX * currentProgress;
                 const translateXReverse = -distanceX * currentProgress;
 
-                row1.style.transform = `translateX(${translateX}px)`;
-                row2.style.transform = `translateX(${translateXReverse}px)`;
-                row3.style.transform = `translateX(${translateX}px)`;
+                row1.style.transform = `translate3d(${translateX}px, 0, 0)`;
+                row2.style.transform = `translate3d(${translateXReverse}px, 0, 0)`;
+                row3.style.transform = `translate3d(${translateX}px, 0, 0)`;
             }
 
             requestAnimationFrame(animateParallax);
         }
 
-        window.addEventListener('scroll', updateParallax);
-        window.addEventListener('resize', updateParallax);
-        updateParallax();
+        window.addEventListener('scroll', updateParallax, { passive: true });
+        window.addEventListener('resize', updateLayout, { passive: true });
+        
+        // Initial setup
+        updateLayout();
         animateParallax();
 
         // --- 1. Navbar Scroll Shrink Effect ---
